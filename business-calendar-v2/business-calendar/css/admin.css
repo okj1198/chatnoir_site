@@ -1,0 +1,315 @@
+@charset "utf-8";
+
+
+/* -- div#header -------------------------------------------------------------------------------- */
+
+div#header{
+	width : 100%;
+	min-width : 1000px;
+	background : #ffffff;
+	border-bottom : 1px solid #cccccc;
+	box-shadow : 0 0 5px rgba( 0, 0, 0, 0.2 );
+}
+
+div#header ul{
+	width : 98%;
+	margin : 0 auto;
+	padding : 15px 0;
+	overflow : hidden;
+	list-style-type : none;
+}
+
+div#header ul li{
+	float : left;
+	padding : 0px 20px;
+	border-right : 1px solid #cccccc;
+	text-align : center;
+}
+
+div#header ul li#logout{
+	float : right;
+	border-right : none;
+	border-left : 1px solid #cccccc;
+}
+
+div#header ul li div{
+	padding : 10px 20px 10px 65px;
+	border-radius : 3px;
+	position : relative;
+}
+
+div#header ul li div:hover{
+	cursor : pointer;
+	color : #106dff;
+	background : rgba( 0, 0, 0, 0.1 );
+}
+
+div#header ul li#now div:before{
+	display : inline-block;
+	font-family : FontAwesome;
+	text-rendering : auto;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	content : "\f073";
+	line-height : 1;
+	font-size : 210%;
+	position : absolute;
+	left : 20px;
+	top : 18px;
+}
+
+div#header ul li#logout div:before{
+	display : inline-block;
+	font-family : FontAwesome;
+	text-rendering : auto;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	content : "\f090";
+	line-height : 1;
+	font-size : 230%;
+	position : absolute;
+	left : 20px;
+	top : 18px;
+}
+
+div#header ul li span{
+	display : block;
+	font-size : 85%;
+	color : #3377ff;
+}
+
+
+/* -- form -------------------------------------------------------------------------------- */
+
+form#admin-calendar{
+	width : 95%;
+	margin : 50px auto;
+	padding : 30px 0;
+	background : #ffffff;
+	box-shadow : 0 0 5px rgba( 0, 0, 0, 0.2 );
+}
+
+
+/* -- div#year-month -------------------------------------------------------------------------------- */
+
+div#year-month{
+	width : 95%;
+	margin : 0 auto;
+	position : relative;
+}
+
+div#year-month h1{
+	margin : 0 auto;
+	font-size : 215%;
+	text-align : center;
+	font-family : 'Cinzel', serif;
+	letter-spacing : 0.08em;
+	text-shadow : 3px 4px 2px rgba( 0, 0, 0, 0.1 );
+}
+
+div#year-month ul{
+	width : 100%;
+	list-style-type : none;
+	overflow : hidden;
+	position : absolute;
+	left : 0;
+	top : 15px;
+}
+
+div#year-month ul li,
+div#year-month ul li a{
+	color : #3377ff;
+	text-decoration : none;
+}
+
+div#year-month ul li#prev{
+	float : left;
+}
+
+div#year-month ul li#next{
+	float : right;
+}
+
+div#year-month ul li a:hover{
+	cursor : pointer;
+	color : #106dff;
+	text-decoration : underline;
+}
+
+div#year-month ul li#prev:before{
+	display : inline-block;
+	font-family : FontAwesome;
+	text-rendering : auto;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	content : "\f053";
+	line-height : 1;
+	margin-right : 5px;
+}
+
+div#year-month ul li#next:after{
+	display : inline-block;
+	font-family : FontAwesome;
+	text-rendering : auto;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	content : "\f054";
+	line-height : 1;
+	margin-left : 5px;
+}
+
+
+/* -- table -------------------------------------------------------------------------------- */
+
+table,
+table tr th,
+table tr td{
+	border-collapse : collapse;
+	border : 1px solid #cccccc;
+	text-align : center;
+}
+
+table tr th,
+table tr td div{
+  padding : 20px 0px;
+}
+
+table{
+	width : 95%;
+	min-width : 300px;
+	margin : 30px auto 20px;
+}
+
+table tr{
+}
+
+table tr th{
+	font-weight : bold;
+	background : rgba( 0, 0, 0, 0.02 )
+}
+
+table tr td{
+}
+
+table tr th.saturday,
+table tr td.saturday{
+	color : #3535ff;
+}
+
+table tr th.sunday,
+table tr td.sunday,
+table tr td.festival{
+	color : #ff3535;
+}
+
+table tr td.holiday{
+	background : rgba( 255, 0, 0, 0.1 );
+}
+
+table tr td input{
+	display : none;
+}
+
+
+/* -- p.submit -------------------------------------------------------------------------------- */
+
+p.submit{
+	width : 95%;
+	margin : 0 auto;
+}
+
+p.submit input{
+	width : auto;
+	height : auto;
+	padding : 9px 15px;
+	vertical-align : middle;
+	line-height : 1;
+	background : #eeeeee;
+	border : 1px solid #cccccc;
+	border-radius : 3px;
+	color : inherit;
+	font-family : inherit;
+	-webkit-appearance : none;
+}
+
+p.submit input:hover{
+	cursor : pointer;
+	color : #106dff;
+	background : #e0e0e0;
+}
+
+
+/* -- p.notice -------------------------------------------------------------------------------- */
+
+p.notice{
+	width : 95%;
+	margin : 0 auto;
+	text-align : right;
+	font-size : 85%;
+}
+
+
+/* -- p#footer -------------------------------------------------------------------------------- */
+
+p#footer{
+	width : 95%;
+	margin : 0 auto;
+	padding-bottom : 20px;
+	font-size : 85%;
+	font-family : 'Cinzel', serif;
+}
+
+p#footer a{
+	color : inherit;
+}
+
+p#footer span{
+	font-family : sans-serif;
+}
+
+
+/* -- span.loading -------------------------------------------------------------------------------- */
+
+span.loading{
+	width : 50px;
+	height : 50px;
+	border-radius : 50%;
+	border-top : 5px solid rgba(255, 255, 255, 0.2);
+	border-right : 5px solid rgba(255, 255, 255, 0.2);
+	border-bottom : 5px solid rgba(255, 255, 255, 0.2);
+	border-left : 5px solid #ffffff;
+	-webkit-transform : translateZ(0);
+	-ms-transform : translateZ(0);
+	transform : translateZ(0);
+	-webkit-animation : load-circle 1.0s linear infinite;
+	animation : load-circle 1.0s linear infinite;
+	position : absolute;
+	top : 50%;
+	left : 50%;
+	margin-top : -25px;
+	margin-left : -25px;
+}
+
+@-webkit-keyframes load-circle{
+	0%{
+		-webkit-transform : rotate( 0deg );
+		transform : rotate( 0deg );
+	}
+	100%{
+		-webkit-transform : rotate( 360deg );
+		transform : rotate( 360deg );
+	}
+}
+
+@keyframes load-circle{
+	0%{
+		-webkit-transform : rotate( 0deg );
+		transform : rotate( 0deg );
+	}
+	100%{
+		-webkit-transform : rotate( 360deg );
+		transform : rotate( 360deg );
+	}
+}
+
+

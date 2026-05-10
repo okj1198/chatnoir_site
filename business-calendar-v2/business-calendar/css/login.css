@@ -1,0 +1,124 @@
+@charset "utf-8";
+
+
+/* -- form#login-form -------------------------------------------------------------------------------- */
+
+form#login-form{
+	width : 600px;
+	height : auto;
+	background : #ffffff;
+	border : 1px solid #cccccc;
+	border-radius : 7px;
+	box-shadow : 0 0 5px rgba( 0, 0, 0, 0.2 );
+	padding : 40px 0;
+	position : absolute;
+	top : 50%;
+	left : 50%;
+	margin-left : -301px;
+}
+
+
+form#login-form h1{
+	width : 85%;
+	margin : 0 auto;
+	font-size : 215%;
+	text-align : center;
+	font-family : 'Cinzel', serif;
+	letter-spacing : 0.08em;
+	text-shadow : 3px 4px 2px rgba( 0, 0, 0, 0.1 );
+}
+
+
+form#login-form input{
+	height : 2em;
+	padding : 2px 2%;
+	border : 1px solid #cccccc;
+	border-radius : 3px;
+	background : #fafafa;
+}
+
+form#login-form input:focus{
+	box-shadow : 0px 0px 5px #55ccff;
+	border : 1px solid #55ccff;
+	background : #ffffff;
+}
+
+
+form#login-form dl{
+	width : 80%;
+	margin : 15px auto 0;
+}
+
+form#login-form dl dt{
+	margin-top : 20px;
+}
+
+form#login-form dl dt:first-child{
+	margin-top : 0;
+}
+
+form#login-form dl dd input{
+	width : 95%;
+	margin-top : 5px;
+	-webkit-appearance : none;
+}
+
+
+form#login-form p.submit{
+	width : 80%;
+	margin : 30px auto 0;
+}
+
+form#login-form p.submit input{
+	width : auto;
+	height : auto;
+	padding : 9px 15px;
+	vertical-align : middle;
+	line-height : 1;
+	background : #eeeeee;
+	border : 1px solid #cccccc;
+	border-radius : 3px;
+	color : inherit;
+	font-family : inherit;
+	-webkit-appearance : none;
+}
+
+form#login-form p.submit input:hover{
+	cursor : pointer;
+	color : #106dff;
+	background : #e0e0e0;
+}
+
+
+/* -- for JavaScript ここから -------------------- */
+
+form#login-form dl dd span{
+	display : block;
+	color : #ff0000;
+}
+
+
+/* -- for JavaScript ここまで -------------------- */
+
+
+/* -- p#footer -------------------------------------------------------------------------------- */
+
+p#footer{
+	width : 95%;
+	margin : 0 auto;
+	padding-bottom : 20px;
+	font-size : 85%;
+	font-family : 'Cinzel', serif;
+}
+
+p#footer a{
+	color : inherit;
+}
+
+p#footer span{
+	font-family : sans-serif;
+}
+
+
+
+

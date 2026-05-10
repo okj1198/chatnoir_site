@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ja">
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <meta name="description" content="シャノワールは大阪・東心斎橋（鰻谷）のフレンチバー。フランスワイン、シャンパーニュ、食後酒を静かな空間で。">
+ <meta name="keywords" content="シャノワール,心斎橋,大阪,ワイン,バー,wine bar,osaka,shinsaibashi,champagne,フレンチバー,鰻谷">
+ <meta property="og:url" content="https://www.le-chatnoir.jp/">
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="Le Chat Noir | ご予約">
+ <meta property="og:description" content="ご予約フォーム">
+ <meta property="og:image" content="https://www.le-chatnoir.jp/gallery/tennai1.png">
+
+ <title>Le Chat Noir | Reservation</title>
+
+ <!-- paradeiser -->
+ <link rel="stylesheet" href="dist/min/paradeiser.min.css">
+
+ <!-- flatpickr（CDN）-->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+ <!-- お洒落なテーマ（airbnb）-->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
+
+ <style>
+   :root{
+     --ink:#1d1d1f;
+     --muted:#6b7280;
+     --line:#e5e7eb;
+     --accent:#bfa27a; /* シャンパーニュの金色ニュアンス */
+     --bg:#ffffff;
+   }
+   *{ box-sizing:border-box; }
+   html,body{ margin:0; padding:0; background:var(--bg); color:var(--ink); }
+   body{
+     font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Osaka",Arial,sans-serif;
+     line-height:1.6;
+   }
+   .content{ max-width:720px; margin:72px auto 64px; padding:0 20px; }
+   h1{ font-size:clamp(20px,2.6vw,28px); letter-spacing:.02em; margin:24px 0 8px; }
+   .subtitle{ color:var(--muted); margin-bottom:24px; font-size:14px; }
+   form{
+     border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;
+     box-shadow:0 2px 12px rgba(0,0,0,.03);
+   }
+   .field{ margin-bottom:16px; }
+   .field label{ display:block; font-size:14px; margin-bottom:6px; }
+   .req::after{ content:" *"; color:#d00; }
+   input[type="text"], input[type="email"], select, textarea{
+     width:100%; font-size:16px; padding:12px; border:1px solid var(--line); border-radius:10px; outline:none;
+   }
+   textarea{ min-height:120px; resize:vertical; }
+   .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+   @media (max-width:640px){ .row{ grid-template-columns:1fr; } }
+   .help{ color:var(--muted); font-size:12px; margin-top:6px; }
+   .checkbox{ display:flex; align-items:flex-start; gap:10px; font-size:14px; }
+   .actions{ display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
+   .btn{
+     appearance:none; border:1px solid var(--accent); background:var(--accent); color:#fff;
+     padding:12px 18px; border-radius:999px; font-size:15px; cursor:pointer; transition:.2s ease;
+   }
+   .btn.secondary{ background:#fff; color:var(--ink); border-color:var(--line); }
+   .btn:hover{ filter:brightness(0.97); }
+   .note{ border-top:1px dashed var(--line); margin-top:18px; padding-top:14px; font-size:13px; color:var(--muted); }
+   .paradeiser .logo{ height:26px; }
+
+   /* フォーカスを上品に */
+   input:focus, select:focus, textarea:focus{
+     border-color: var(--accent); box-shadow:0 0 0 3px rgba(191,162,122,.18);
+   }
+
+   /* flatpickrのアクセント色を合わせる */
+   .flatpickr-calendar .flatpickr-day.selected,
+   .flatpickr-calendar .flatpickr-day.startRange,
+   .flatpickr-calendar .flatpickr-day.endRange,
+   .flatpickr-time input:hover,
+   .flatpickr-time input:focus{
+     background:var(--accent); border-color:var(--accent);
+   }
+   .hp{ position:absolute; left:-5000px; width:1px; height:1px; overflow:hidden; } /* ハニーポット */
+ </style>
+</head>
+<body>
+ <nav class="paradeiser">
+   <a href="index.html"><img src="img/chatnoir_logo.svg" alt="Le Chat Noir" class="logo"></a>
+   <a href="bytheglass.html"><span>Menu</span></a>
+   <a href="http://chatnoir07.exblog.jp" target="_blank" rel="noopener"><span>PhotoBlog</span></a>
+   <a href="access.html"><span>Access</span></a>
+   <a href="reserve_form.html" aria-current="page"><span>Reserve</span></a>
+ </nav>
+
+ <div class="content">
+   <h1>ご予約 / Reservation</h1>
+   <p class="subtitle">下記フォームをご送信ください。折り返し当店からのご連絡をもって予約確定となります。</p>
+
+<form id="reserveForm" method="post" action="https://www.le-chatnoir.jp/mail_relay.php" novalidate>
+  <!-- honeypot（ボット用） -->
+  <div class="hp" aria-hidden="true">
+    <label>Leave this empty <input type="text" name="website"></label>
+  </div>
+
+  <div class="field">
+    <label for="name" class="req">お名前 / Full Name</label>
+    <input id="name" name="name" type="text" placeholder="山田 太郎 / Taro Yamada" autocomplete="name" required>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="email" class="req">メール / E-mail</label>
+      <!-- 既存互換: name="e-mail" を維持 -->
+      <input id="email" name="e-mail" type="email" inputmode="email" placeholder="myname@example.com" autocomplete="email" required>
+      <div class="help">確認のご連絡に使用します。</div>
+    </div>
+    <div class="field">
+      <label for="person" class="req">人数 / Guests</label>
+      <select id="person" name="person" required>
+        <option value="" disabled selected>選択してください</option>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option><option>6</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="date" class="req">日付 / Date</label>
+      <input id="date" type="text" placeholder="日付を選択" required>
+      <div class="help">本日以降。水曜・日曜は選択不可です。</div>
+    </div>
+    <div class="field">
+      <label for="time" class="req">時間 / Time</label>
+      <input id="time" type="text" placeholder="時間を選択" required>
+      <div class="help">16:00〜23:30、30分刻み。</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="requests">ご要望 / Special Requests</label>
+    <!-- 既存互換: name="special requests" を維持 -->
+    <textarea id="requests" name="special requests" placeholder="アレルギー、席のご希望など"></textarea>
+  </div>
+
+  <div class="field checkbox">
+    <input id="agree" type="checkbox" required>
+    <label for="agree" class="req">予約確認のため、当店からの連絡（メール）に同意します / I agree to be contacted for confirmation.</label>
+  </div>
+
+  <!-- 旧システム互換: JSで値を入れる -->
+  <input type="hidden" name="day"   id="hid_day">
+  <input type="hidden" name="month" id="hid_month">
+  <input type="hidden" name="year"  id="hid_year">
+  <input type="hidden" name="hour"  id="hid_hour">
+
+  <!-- 件名（未指定ならPHP側の既定を使用） -->
+  <input type="hidden" name="subject" value="[Le Chat Noir] Reservation / ご予約">
+
+  <div class="actions">
+    <button class="btn" type="submit">送信 / Send</button>
+    <button class="btn secondary" type="reset">クリア / Reset</button>
+  </div>
+
+  <p class="note">
+    ご予約の確定について：後ほど、当店からご予約受付の連絡をいたします。<br>
+    そのご連絡をもってご予約確定となります。<br>
+    We will contact you later to confirm receipt of your reservation. With that contact, your reservation will be confirmed.
+  </p>
+</form>
+
+   <div id="footer" style="margin-top:32px;">
+     <hr>
+     <p style="text-align:center; color:#778899; font-size:12px;">
+       Copyright &copy; 2025 le-chatnoir.jp All rights reserved.
+     </p>
+   </div>
+ </div>
+
+ <!-- JS: flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+<script>
+ // カレンダー（日付）
+ const datePicker = flatpickr("#date", {
+   locale: "ja",
+   altInput: true,
+   altFormat: "Y年n月j日 (D)",
+   dateFormat: "Y-m-d",
+   minDate: "today",
+   // 定休日: 日曜(0) と 水曜(3) を選択不可にする
+   disable: [
+     function(d){
+       const day = d.getDay(); // 0=日,1=月,2=火,3=水,4=木,5=金,6=土
+       return day === 0 || day === 3;
+     }
+   ]
+ });
+
+ // 時刻ピッカー（16:00〜23:30、30分刻み／24h表記）
+ const timePicker = flatpickr("#time", {
+   enableTime: true,
+   noCalendar: true,
+   time_24hr: true,
+   dateFormat: "H:i",
+   minuteIncrement: 30,
+   defaultHour: 18,
+   minTime: "16:00",
+   maxTime: "23:30"
+ });
+
+ // 送信時: バリデーション & 旧フィールドに分解（既存のまま）
+ document.getElementById('reserveForm').addEventListener('submit', function(e){
+   const form = e.target;
+   if (form.querySelector('input[name="website"]').value) { e.preventDefault(); return; }
+
+   const name = form.name.value.trim();
+   const email = form['e-mail'].value.trim();
+   const guests = form.person.value;
+   const date = document.getElementById('date').value;
+   const time = document.getElementById('time').value;
+   const agree = document.getElementById('agree').checked;
+
+   if(!name || !email || !guests || !date || !time || !agree){
+     e.preventDefault();
+     alert('未入力の必須項目があります。');
+     return;
+   }
+   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+     e.preventDefault();
+     alert('メールアドレスの形式をご確認ください。');
+     return;
+   }
+
+   const [yyyy, mm, dd] = date.split('-').map(n => parseInt(n,10));
+   document.getElementById('hid_day').value   = dd;
+   document.getElementById('hid_month').value = mm;
+   document.getElementById('hid_year').value  = yyyy;
+   document.getElementById('hid_hour').value  = time; // "HH:MM"
+ });
+    
+    document.getElementById('date').addEventListener('change', function(){
+ const sel = this.value; // "YYYY-MM-DD"
+ const today = new Date();
+ const y = today.getFullYear(), m = String(today.getMonth()+1).padStart(2,'0'), d = String(today.getDate()).padStart(2,'0');
+ const todayStr = `${y}-${m}-${d}`;
+ if (sel === todayStr) {
+   // 現在時刻を30分単位に切上げ、16:00より早ければ16:00に
+   const now = new Date();
+   const mins = now.getMinutes();
+   const roundedMins = (Math.floor(mins/30)+1)*30 % 60;
+   const carry = mins > 30 ? 1 : 0;
+   let hh = now.getHours() + carry;
+   let mm = roundedMins === 0 ? '00' : String(roundedMins).padStart(2,'0');
+   if (hh < 16) { hh = 16; mm = '00'; }
+   if (hh > 23 || (hh === 23 && mm > '30')) { hh = 23; mm = '30'; }
+   timePicker.set('minTime', `${String(hh).padStart(2,'0')}:${mm}`);
+ } else {
+   timePicker.set('minTime', '16:00');
+ }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+
+/* -- webfont -------------------------------------------------------------------------------- */
+
+@import url( 'https://fonts.googleapis.com/css?family=Cinzel' );
+
+@font-face {
+	font-family : 'FontAwesome';
+	src : url( '../font/fontawesome-webfont.eot?v=4.7.0' );
+	src : url( '../font/fontawesome-webfont.eot?#iefix&v=4.7.0' ) format( 'embedded-opentype' ),
+				url( '../font/fontawesome-webfont.woff2?v=4.7.0' ) format( 'woff2' ),
+				url( '../font/fontawesome-webfont.woff?v=4.7.0' ) format( 'woff' ),
+				url( '../font/fontawesome-webfont.ttf?v=4.7.0' ) format( 'truetype' ),
+				url( '../font/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular' ) format( 'svg' );
+	font-weight : normal;
+	font-style : normal;
+}
+
+
+
+
+/* -- body -------------------------------------------------------------------------------- */
+
+body{
+	font-family : "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", Verdana, Arial, sans-serif;
+	color : #454545;
+	font-size : 90%;
+	line-height : 1.8;
+	background : url(../image/bg-body.png) repeat 0 0;
+	text-shadow : 0px 1px 0px #ffffff;
+	overflow-y : scroll;
+}
+
+a:link,
+a:visited{
+	color : #0000ff;
+	text-decoration : underline;
+}
+
+a:hover,
+a:active{
+	color : #0000ff;
+	text-decoration : none;
+}
+
+
+
+

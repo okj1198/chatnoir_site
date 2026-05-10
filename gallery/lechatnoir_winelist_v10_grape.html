@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LE CHAT NOIR Wine List v10 Grape</title>
+  <style>
+    :root{
+      --wine:#5a0f22;
+      --ink:#201818;
+      --muted:#756c67;
+      --line:#d9cec8;
+      --paper:#fffdf8;
+      --bg:#f5f0ec;
+      --gold:#9b845d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+      line-height:1.55;
+    }
+    header{
+      background:var(--wine);
+      color:#fff;
+      padding:28px 20px 24px;
+      text-align:center;
+      letter-spacing:.04em;
+    }
+    .brand{font-family:Georgia,"Times New Roman",serif;font-size:28px;font-weight:700;letter-spacing:.11em;}
+    .subtitle{font-size:13px;opacity:.9;margin-top:4px;}
+    main{max-width:980px;margin:0 auto;padding:18px 14px 42px;}
+    .toolbar{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 2px 12px rgba(60,35,25,.08);
+      padding:16px;
+      margin-bottom:18px;
+    }
+    .toolbar-row{display:grid;grid-template-columns:1fr 160px 160px;gap:12px;align-items:end;}
+    label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px 2px;}
+    input,select,button{
+      width:100%;
+      padding:12px 13px;
+      border:1px solid #cfc3bd;
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-size:15px;
+    }
+    button{background:var(--wine);color:#fff;border:none;font-weight:700;cursor:pointer;}
+    .status{margin-top:10px;color:var(--muted);font-size:13px;}
+    .summary{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 18px;}
+    .pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:13px;color:var(--muted);}
+    .category{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 2px 12px rgba(60,35,25,.08);
+      margin:0 0 18px;
+      overflow:hidden;
+    }
+    .category h2{
+      margin:0;
+      padding:15px 16px 13px;
+      background:var(--wine);
+      color:white;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:20px;
+      line-height:1.15;
+      letter-spacing:.08em;
+    }
+    .category .jp{font-family:inherit;font-size:12px;font-weight:500;letter-spacing:.14em;opacity:.8;margin-left:8px;}
+    .wine-row{
+      display:grid;
+      grid-template-columns:72px minmax(0,1fr) 170px 96px;
+      gap:14px;
+      padding:12px 16px;
+      border-bottom:1px solid #eee5df;
+      align-items:baseline;
+    }
+    .wine-row:last-child{border-bottom:none}
+    .vintage{font-family:Georgia,"Times New Roman",serif;font-weight:700;white-space:nowrap;}
+    .name{min-width:0;}
+    .producer{font-weight:800;letter-spacing:.02em;}
+    .aoc{font-size:13px;color:#5f5550;margin-top:1px;}
+    .area{font-size:13px;color:#5f5550;}
+    .price{text-align:right;font-family:Georgia,"Times New Roman",serif;font-weight:700;white-space:nowrap;}
+    .empty{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 18px;text-align:center;color:var(--muted);}
+    .footer-note{text-align:center;color:var(--muted);font-size:12px;margin:24px 0 0;}
+    .hide-print{display:block}
+    .toolbar,.summary{display:none!important;}
+
+    @media (max-width:720px){
+      header{padding:24px 16px 20px;text-align:left}
+      .brand{font-size:24px;}
+      main{padding:14px 10px 32px;}
+      .toolbar-row{grid-template-columns:1fr 1fr;}
+      .toolbar-row .searchbox{grid-column:1 / -1;}
+      .wine-row{grid-template-columns:54px minmax(0,1fr) 84px;gap:10px;padding:12px 12px;}
+      .area{grid-column:2 / 3;margin-top:-6px;}
+      .price{grid-column:3 / 4;grid-row:1 / 3;align-self:center;}
+      .producer{font-size:14px;}
+      .aoc,.area{font-size:12px;}
+      .category h2{font-size:17px;}
+    }
+
+    @media print{
+      body{background:#fff;color:#000;font-size:10.5pt;}
+      header{background:#fff;color:#000;border-bottom:2px solid #000;padding:12mm 0 5mm;text-align:center;}
+      .brand{font-size:22pt;}
+      .subtitle{color:#333;}
+      main{max-width:none;padding:5mm 8mm;}
+      .hide-print,.toolbar,.summary{display:none!important;}
+      .category{box-shadow:none;border:none;border-radius:0;margin:0 0 7mm;page-break-inside:avoid;background:#fff;}
+      .category h2{background:#fff;color:#000;border-bottom:1px solid #000;padding:0 0 2mm;font-size:14pt;}
+      .wine-row{grid-template-columns:18mm 1fr 42mm 24mm;border-bottom:.5pt solid #ddd;padding:2mm 0;gap:4mm;}
+      .aoc,.area{color:#000;font-size:9pt;}
+      .price{font-size:10pt;}
+      .footer-note{font-size:8pt;color:#333;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">LE CHAT NOIR</div>
+    <div class="subtitle">WINE LIST｜価格には消費税10%が含まれています。<br>Prices include 10% consumption tax.</div>
+  </header>
+
+  <main>
+    <section class="toolbar hide-print">
+      <div class="toolbar-row">
+        <div class="searchbox">
+          <label for="search">検索</label>
+          <input id="search" type="search" placeholder="生産者・AOC・産地・年代で検索" />
+        </div>
+        <div>
+          <label for="typeFilter">タイプ</label>
+          <select id="typeFilter">
+            <option value="">すべて</option>
+            <option value="泡">泡</option>
+            <option value="白">白</option>
+            <option value="赤">赤</option>
+            <option value="ロゼ">ロゼ</option>
+            <option value="オレンジ">オレンジ</option>
+            <option value="甘口">甘口</option>
+          </select>
+        </div>
+        <div>
+          <label for="sortMode">並び順</label>
+          <select id="sortMode">
+            <option value="sheet">シート順</option>
+            <option value="type-area-price">タイプ→産地→価格</option>
+            <option value="price-asc">価格が安い順</option>
+            <option value="price-desc">価格が高い順</option>
+            <option value="producer">生産者順</option>
+            <option value="vintage">年代順</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+        <button id="reloadBtn">最新在庫を読み込み</button>
+        <button id="printBtn" style="background:#776e68;">印刷 / PDF保存</button>
+      </div>
+      <div id="status" class="status">読み込み待ちです。</div>
+    </section>
+
+    <div id="summary" class="summary hide-print"></div>
+    <section id="list"></section>
+    <div class="footer-note">表示までに60秒ほどかかります。<br>It may take about 60 seconds to display.</div>
+  </main>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbx0KOLi6PHOdnpEZgK6Wg9-kYFtipGkFLCjNszcBiUA-XF6A2TCuru9qf-dLkfDE79BXw/exec';
+const TYPES = [
+  {key:'泡', title:'CHAMPAGNES & OTHER SPARKLING', jp:'泡'},
+  {key:'白', title:'WHITE', jp:'白'},
+  {key:'赤', title:'RED', jp:'赤'},
+  {key:'ロゼ', title:'ROSÉ', jp:'ロゼ'},
+  {key:'オレンジ', title:'ORANGE', jp:'オレンジ'},
+  {key:'甘口', title:'SWEET', jp:'甘口'},
+];
+let wines = [];
+
+const $ = (id)=>document.getElementById(id);
+function setStatus(msg, isError=false){$('status').textContent=msg;$('status').style.color=isError?'#a51e2d':'#756c67';}
+function yen(n){const v=Number(n)||0;return v ? '¥' + v.toLocaleString('ja-JP') : '';}
+function text(v){return (v ?? '').toString().trim();}
+function norm(v){return text(v).toLowerCase();}
+function getType(w){
+  const explicit = text(w['タイプ']);
+  if (explicit) return explicit;
+
+  // 産地（地区）欄の末尾記号からタイプを自動判定
+  // _B = 白, _R = 赤, _M = 泡, _r = ロゼ, _O = オレンジ
+  const area = text(w['地区'] || w['産地']);
+  if (/_B\s*$/.test(area)) return '白';
+  if (/_R\s*$/.test(area)) return '赤';
+  if (/_M\s*$/.test(area)) return '泡';
+  if (/_r\s*$/.test(area)) return 'ロゼ';
+  if (/_O\s*$/.test(area)) return 'オレンジ';
+
+  return '';
+}
+function displayArea(w){
+  // 表示上は _B / _R などの管理用記号を外す
+  return text(w['地区'] || w['産地']).replace(/_(B|R|M|r|O)\s*$/, '').trim();
+}
+function displayGrape(w){
+  // Googleスプレッドシートの「品種」列を表示。列名違いにも対応。
+  const grape = text(w['品種'] || w['葡萄品種'] || w['ぶどう品種'] || w['grape'] || w['Grape']);
+  return grape;
+}
+function typeIndex(t){const i=TYPES.findIndex(x=>x.key===t);return i<0?999:i;}
+
+function jsonp(params, timeoutMs=90000){
+  return new Promise((resolve,reject)=>{
+    const cb='winelist_cb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    params.callback=cb; params._=Date.now();
+    const url=API_URL+'?'+new URLSearchParams(params).toString();
+    const s=document.createElement('script');
+    let done=false;
+    const timer=setTimeout(()=>{ if(done)return; done=true; cleanup(); reject(new Error('読み込みがタイムアウトしました。')); }, timeoutMs);
+    function cleanup(){ clearTimeout(timer); try{delete window[cb];}catch(e){window[cb]=undefined;} s.remove(); }
+    window[cb]=(data)=>{ if(done)return; done=true; cleanup(); resolve(data); };
+    s.onerror=()=>{ if(done)return; done=true; cleanup(); reject(new Error('通信に失敗しました。')); };
+    s.src=url; document.body.appendChild(s);
+  });
+}
+
+async function loadWines(){
+  setStatus('Googleスプレッドシートから最新在庫を読み込み中です…');
+  $('reloadBtn').disabled=true;
+  try{
+    const data=await jsonp({action:'getWines'}, 90000);
+    if(!data || !data.success) throw new Error((data && data.message) || '取得に失敗しました。');
+    wines=(data.wines || []).filter(w=>Number(w['在庫'])>0);
+    setStatus(`${wines.length}件の在庫ワインを読み込みました。`);
+    render();
+  }catch(err){
+    setStatus(err.message + ' Apps Scriptの公開設定またはデプロイ更新を確認してください。', true);
+  }finally{
+    $('reloadBtn').disabled=false;
+  }
+}
+
+function filtered(){
+  const q=norm($('search').value);
+  const type=$('typeFilter').value;
+  let list=wines.filter(w=>{
+    const t=getType(w);
+    // タイプが判定できないワインは、お客様向けリストには表示しない
+    if(!t) return false;
+    if(type && t!==type) return false;
+    if(!q) return true;
+    return [w['生産者'],w['AOC'],w['地区'],w['年代'],w['国番号'],w['インポート'],w['タイプ'],w['品種'],w['葡萄品種'],w['ぶどう品種']].some(v=>norm(v).includes(q));
+  });
+  const mode=$('sortMode').value;
+  const byString=(a,b,k)=>text(a[k]).localeCompare(text(b[k]), 'ja');
+  list=[...list].sort((a,b)=>{
+    if(mode==='sheet') return Number(a.rowNumber)-Number(b.rowNumber);
+    if(mode==='type-area-price') return typeIndex(getType(a))-typeIndex(getType(b)) || byString(a,b,'地区') || (Number(a['PRICE'])-Number(b['PRICE']));
+    if(mode==='price-asc') return Number(a['PRICE'])-Number(b['PRICE']);
+    if(mode==='price-desc') return Number(b['PRICE'])-Number(a['PRICE']);
+    if(mode==='producer') return byString(a,b,'生産者') || byString(a,b,'AOC');
+    if(mode==='vintage') return text(a['年代']).localeCompare(text(b['年代']), 'ja') || byString(a,b,'生産者');
+    return 0;
+  });
+  return list;
+}
+
+function renderSummary(list){
+  const total=list.length;
+  const counts=TYPES.map(t=>({label:t.key,count:list.filter(w=>getType(w)===t.key).length})).filter(x=>x.count>0);
+  $('summary').innerHTML=[`<span class="pill">表示 ${total}件</span>`, ...counts.map(c=>`<span class="pill">${escapeHtml(c.label)} ${c.count}件</span>`)].join('');
+}
+
+function render(){
+  const list=filtered();
+  renderSummary(list);
+  if(!list.length){$('list').innerHTML='<div class="empty">表示できるワインがありません。検索条件またはタイプを確認してください。</div>';return;}
+  const grouped={};
+  TYPES.forEach(t=>grouped[t.key]=[]);
+  list.forEach(w=>{const t=getType(w); if(grouped[t]) grouped[t].push(w);});
+  let html='';
+  TYPES.forEach(t=>{
+    const rows=grouped[t.key]||[];
+    if(!rows.length) return;
+    html += `<article class="category"><h2>${t.title}<span class="jp">${t.jp}</span></h2>`;
+    rows.forEach(w=>{
+      const name=[text(w['生産者']), text(w['AOC'])].filter(Boolean).join('　');
+      html += `<div class="wine-row">
+        <div class="vintage">${escapeHtml(text(w['年代']) || 'NV')}</div>
+        <div class="name"><div class="producer">${escapeHtml(name || '名称未入力')}</div></div>
+        <div class="area">${escapeHtml(displayGrape(w))}</div>
+        <div class="price">${yen(w['PRICE'])}</div>
+      </div>`;
+    });
+    html += `</article>`;
+  });
+  $('list').innerHTML=html;
+}
+
+function escapeHtml(str){return String(str).replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+
+$('reloadBtn').addEventListener('click', loadWines);
+$('printBtn').addEventListener('click', ()=>window.print());
+$('search').addEventListener('input', render);
+$('typeFilter').addEventListener('change', render);
+$('sortMode').addEventListener('change', render);
+window.addEventListener('DOMContentLoaded', loadWines);
+</script>
+</body>
+</html>

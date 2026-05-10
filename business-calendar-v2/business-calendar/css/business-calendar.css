@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+
+div#business-calendar{
+	width : 300px;
+}
+
+
+div#business-calendar table,
+div#business-calendar table tr th,
+div#business-calendar table tr td{
+	border-collapse : collapse;
+	border : 1px solid #cccccc;
+	text-align : center;
+}
+
+div#business-calendar table tr th,
+div#business-calendar table tr td{
+  padding : 7px 0;
+}
+
+
+div#business-calendar table{
+	width : 100%;
+	background : #ffffff;
+}
+
+div#business-calendar table th{
+	font-weight : bold;
+}
+
+div#business-calendar table tr{
+}
+
+div#business-calendar table tr#year-month th{
+	position : relative;
+}
+
+div#business-calendar table tr#year-month th ul{
+	width : 100%;
+	list-style-type : none;
+	overflow : hidden;
+	position : absolute;
+	left : 0;
+	bottom : 10px;
+}
+
+div#business-calendar table tr#year-month ul li{
+	font-weight : normal;
+	font-size : 85%;
+	color : #3377ff;
+}
+
+div#business-calendar table tr#year-month ul li#prev{
+	float : left;
+	margin-left : 5px;
+}
+
+div#business-calendar table tr#year-month ul li#next{
+	float : right;
+	margin-right : 5px;
+}
+
+div#business-calendar table tr#year-month ul li#prev a:before{
+	display : inline-block;
+	font-family : FontAwesome;
+	text-rendering : auto;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	content : "\f053";
+	line-height : 1;
+	margin-right : 5px;
+}
+
+div#business-calendar table tr#year-month ul li#next a:after{
+	display : inline-block;
+	font-family : FontAwesome;
+	text-rendering : auto;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing : grayscale;
+	content : "\f054";
+	line-height : 1;
+	margin-left : 5px;
+}
+
+div#business-calendar table tr#year-month ul li a:hover{
+	cursor : pointer;
+	color : #106dff;
+	text-decoration : underline;
+}
+
+
+div#business-calendar table tr td{
+}
+
+div#business-calendar table th.saturday,
+div#business-calendar table td.saturday{
+	color : #3535ff;
+}
+
+div#business-calendar table th.sunday,
+div#business-calendar table td.sunday,
+div#business-calendar table td.festival{
+	color : #ff3535;
+}
+
+div#business-calendar table td.holiday{
+	background : rgba( 255, 0, 0, 0.1 );
+}
+
+
+div#business-calendar table+p{
+	margin-top : 5px;
+}
+
+div#business-calendar table+p span{
+	color :  rgba( 255, 0, 0, 0.25 );
+}
+
+
+p#business-calendar-copyright{
+	font-size : 75%;
+	text-align : right;
+	margin-top : 3px;
+	color : #999999;
+}
+
+p#business-calendar-copyright a{
+	color : inherit;
+}
+
+
